@@ -1,0 +1,12 @@
+server:
+   port: 9999
+   compression:
+      enabled: true
+      mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+spring:
+   profiles:
+      active: local
+   servlet.multipart.max-file-size: 5MB #单文件上传大小
+   servlet.multipart.max-request-size: 10MB #总文件上传大小
+   application:
+      name: student-info

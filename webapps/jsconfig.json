@@ -1,0 +1,16 @@
+// 在文件 jsconfig.json 中
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "preserve" //添加配置
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
