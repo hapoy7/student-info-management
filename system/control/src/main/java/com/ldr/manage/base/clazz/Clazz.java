@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.clazz;
+package com.ldr.manage.base.clazz;
 
 import lombok.Getter;
 import lombok.Setter;

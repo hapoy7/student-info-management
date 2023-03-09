@@ -1,9 +1,10 @@
-package com.jljcxy.manage.base.student;
+package com.ldr.manage.base.student;
 
-import java.util.List;
+import com.ldr.common.base.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ldr.common.base.Page;
+
+import java.util.List;
 /**
  * @类说明 【学生】业务逻辑层
  * @author 张可可
@@ -70,5 +71,5 @@ public class StudentService {
 	 */
 	public void saveBatch(List<Student> students) {
 		studentDao.saveBatch(students);
-	}	
+	}
 }

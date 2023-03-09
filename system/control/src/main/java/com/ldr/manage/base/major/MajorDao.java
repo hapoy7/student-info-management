@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.major;
+package com.ldr.manage.base.major;
 
 import org.springframework.stereotype.Repository;
 import com.ldr.common.base.BaseDao;
@@ -10,5 +10,5 @@ import com.ldr.common.base.BaseDao;
 //@Slf4j
 @Repository
 public class MajorDao extends BaseDao<Major> {
-//	MajorDao() { checkTableRef = true; /*启用删除时外键检查*/ } 
+//	MajorDao() { checkTableRef = true; /*启用删除时外键检查*/ }
 }

@@ -1,9 +1,10 @@
-package com.jljcxy.manage.base.teacher;
+package com.ldr.manage.base.teacher;
 
-import java.util.List;
+import com.ldr.common.base.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ldr.common.base.Page;
+
+import java.util.List;
 /**
  * @类说明 【老师】业务逻辑层
  * @author 张可可
@@ -70,5 +71,5 @@ public class TeacherService {
 	 */
 	public void saveBatch(List<Teacher> teachers) {
 		teacherDao.saveBatch(teachers);
-	}	
+	}
 }

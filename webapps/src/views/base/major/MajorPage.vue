@@ -5,7 +5,6 @@
       <el-form-item label="专业名称" v-show="condition.name.show"><el-input placeholder="请输入专业名称" size="mini" v-model="form.name"></el-input></el-form-item>
       <el-form-item label="专业编号" v-show="condition.majorNumber.show"><el-input placeholder="请输入专业编号" size="mini" v-model="form.majorNumber"></el-input></el-form-item>
       <el-form-item label="学院id" v-show="condition.instituteId.show"><el-input placeholder="请输入学院id" size="mini" v-model="form.instituteId"></el-input></el-form-item>
-      </div>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>

@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.courseteacher;
+package com.ldr.manage.base.courseteacher;
 
 import lombok.Getter;
 import lombok.Setter;

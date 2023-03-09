@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.teacher;
+package com.ldr.manage.base.teacher;
 
 import com.ldr.common.base.BaseCondition;
 import lombok.Builder;

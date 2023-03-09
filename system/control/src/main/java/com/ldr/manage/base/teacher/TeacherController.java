@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.teacher;
+package com.ldr.manage.base.teacher;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

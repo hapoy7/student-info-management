@@ -1,22 +1,15 @@
 package com.ldr.common.tools;
 
+import com.ldr.common.cmd.CMDConst;
+import com.ldr.common.cmd.CMDTool;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import purejavacomm.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import com.ldr.common.cmd.CMDConst;
-import com.ldr.common.cmd.CMDTool;
-import lombok.extern.slf4j.Slf4j;
-import purejavacomm.CommPort;
-import purejavacomm.CommPortIdentifier;
-import purejavacomm.NoSuchPortException;
-import purejavacomm.PortInUseException;
-import purejavacomm.SerialPort;
-import purejavacomm.UnsupportedCommOperationException;
 
 /**
  * @summary 串口通信工具
@@ -24,7 +17,7 @@ import purejavacomm.UnsupportedCommOperationException;
  * @date 2022-11-18 20:20:20
  **/
 @Slf4j
-@Component
+//@Component
 public class SerialPortTool {
 
 	@Value("${serial.portName}") // 注入串口的端口号

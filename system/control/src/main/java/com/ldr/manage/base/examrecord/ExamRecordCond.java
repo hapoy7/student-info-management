@@ -1,13 +1,12 @@
-package com.jljcxy.manage.base.examrecord;
+package com.ldr.manage.base.examrecord;
 
-import java.time.LocalDate;
 import com.ldr.common.base.BaseCondition;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
-//import lombok.AllArgsConstructor;
-//import lombok.NoArgsConstructor;
 import lombok.Setter;
-import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.time.LocalDate;
 /**
  * @类说明 【考试记录表】查询条件
  * @author 张可可

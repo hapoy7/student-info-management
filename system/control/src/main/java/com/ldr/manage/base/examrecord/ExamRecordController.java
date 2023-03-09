@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.examrecord;
+package com.ldr.manage.base.examrecord;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

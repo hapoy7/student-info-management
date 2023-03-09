@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.courseteacher;
+package com.ldr.manage.base.courseteacher;
 
 import org.springframework.stereotype.Repository;
 import com.ldr.common.base.BaseDao;
@@ -10,5 +10,5 @@ import com.ldr.common.base.BaseDao;
 //@Slf4j
 @Repository
 public class CourseTeacherDao extends BaseDao<CourseTeacher> {
-//	CourseTeacherDao() { checkTableRef = true; /*启用删除时外键检查*/ } 
+//	CourseTeacherDao() { checkTableRef = true; /*启用删除时外键检查*/ }
 }

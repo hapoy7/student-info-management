@@ -1,16 +1,13 @@
-package com.jljcxy.manage.base.course;
+package com.ldr.manage.base.course;
 
-import java.time.LocalDate;
-import lombok.Getter;
-import lombok.Setter;
-//import lombok.Builder;
-//import lombok.AllArgsConstructor;
-//import lombok.NoArgsConstructor;
-//import com.ldr.common.base.annotation.Exclude;
 import com.ldr.common.base.annotation.Id;
 import com.ldr.common.base.annotation.Table;
 import com.ldr.common.base.key.IdType;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 /**
  * @类说明 【课程】实体

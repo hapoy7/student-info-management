@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.institute;
+package com.ldr.manage.base.institute;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

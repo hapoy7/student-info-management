@@ -52,17 +52,15 @@
     </v-table>
     <v-page :page="page" :total="total" :size="size" :pageChange="pageChange" :sizeChange="sizeChange"></v-page>
     <UserDialog ref="dialog" :loadData="loadData"></UserDialog>
-    <FingerPage ref="fingerPage" :loadData="loadData"></FingerPage>
   </div>
 </template>
 <script>
 import UserDialog from "./UserDialog.vue";
-import FingerPage from "@/views/base/finger/FingerPage.vue";
 import { pageMix } from "@/common/page";
 import { genderFormat, statusFormat,pesonTypeFormat } from "@/common/dicts";
 export default {
   mixins: [pageMix],
-  components: { UserDialog, FingerPage },
+  components: { UserDialog,  },
   created() {
     this.loadData();
   },

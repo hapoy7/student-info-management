@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.institute;
+package com.ldr.manage.base.institute;
 
 import lombok.Getter;
 import lombok.Setter;

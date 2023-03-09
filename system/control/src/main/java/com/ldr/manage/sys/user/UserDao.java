@@ -21,8 +21,8 @@ public class UserDao extends BaseDao<User> {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT t.user_id,t.dept_id,t.name,t.password,t.login_name,t.avatar,t.phone,t.gender,t.status,t.code,");
 		sql.append("t.number,t.card_no,t.group_name,t.fingerprint_count,t.face_info,t.type,t.start_time,t.end_time,");
-		sql.append("t.create_time,t.update_time,t.remark,t.dr,d.name dept_name ");
-		sql.append("FROM sys_user t LEFT JOIN sys_dept d ON t.dept_id=d.id ");
+		sql.append("t.create_time,t.update_time,t.remark,t.dr ");
+		sql.append("FROM sys_user t ");
 		sql.append("WHERE t.dr=0");
 		sql.append(cond.and());
 		return page(sql.toString(), cond, User.class);
@@ -34,8 +34,8 @@ public class UserDao extends BaseDao<User> {
 	public List<User> list(UserCond cond) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT t.user_id,t.dept_id,t.name,t.password,t.login_name,t.avatar,t.phone,t.gender,t.status,t.code,");
-		sql.append("t.create_time,t.update_time,t.remark,t.dr,d.name dept_name ");
-		sql.append("FROM sys_user t LEFT JOIN sys_dept d ON t.dept_id=d.id ");
+		sql.append("t.create_time,t.update_time,t.remark,t.dr ");
+		sql.append("FROM sys_user t  ");
 		sql.append("WHERE t.dr=0");
 		sql.append(cond.and());
 		return list(sql.toString(), cond, User.class);

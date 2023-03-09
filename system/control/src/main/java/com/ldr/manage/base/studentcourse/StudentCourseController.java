@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.studentcourse;
+package com.ldr.manage.base.studentcourse;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,6 @@
     <el-form :inline="true">
       <el-form-item label="课程id" v-show="condition.courseId.show"><el-input placeholder="请输入课程id" size="mini" v-model="form.courseId"></el-input></el-form-item>
       <el-form-item label="老师id" v-show="condition.teacherId.show"><el-input placeholder="请输入老师id" size="mini" v-model="form.teacherId"></el-input></el-form-item>
-      </div>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>

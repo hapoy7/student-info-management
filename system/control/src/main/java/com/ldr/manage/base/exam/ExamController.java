@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.exam;
+package com.ldr.manage.base.exam;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

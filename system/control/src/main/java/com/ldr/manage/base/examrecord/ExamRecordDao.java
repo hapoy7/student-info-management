@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.examrecord;
+package com.ldr.manage.base.examrecord;
 
 import org.springframework.stereotype.Repository;
 import com.ldr.common.base.BaseDao;
@@ -10,5 +10,5 @@ import com.ldr.common.base.BaseDao;
 //@Slf4j
 @Repository
 public class ExamRecordDao extends BaseDao<ExamRecord> {
-//	ExamRecordDao() { checkTableRef = true; /*启用删除时外键检查*/ } 
+//	ExamRecordDao() { checkTableRef = true; /*启用删除时外键检查*/ }
 }

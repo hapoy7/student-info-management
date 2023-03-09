@@ -22,7 +22,6 @@
       </el-footer>
     </el-container>
     <login v-if="!isLogin" @changeLogin="changeLogin"></login>
-    <KeyList v-if="isLogin && roleType == 2" @changeLogin="changeLogin" :user="user"></KeyList>
   </div>
 </template>
 <script>
@@ -31,11 +30,10 @@ import Menu from "@/views/common/Menu";
 import Header from "@/views/common/Header";
 import Footer from "@/views/common/Footer";
 import Login from "@/views/common/Login";
-import KeyList from "@/views/base/key/KeyList.vue";
 import MenuTag from "@/views/common/MenuTag";
 import { USER, MENUS } from "@/common/Constant";
 export default {
-  components: { MenuTag, Menu, Header, Footer, Login, KeyList },
+  components: { MenuTag, Menu, Header, Footer, Login },
   data() {
     return { menus: [], activeMenu: {}, user: {}, isLogin: Vue.ls.get(USER) != null, roleType: 2, height: null, width: 200 };
   },

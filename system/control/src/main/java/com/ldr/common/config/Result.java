@@ -1,6 +1,5 @@
 package com.ldr.common.config;
 
-import com.ldr.manage.base.face.RespCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

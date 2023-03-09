@@ -1,4 +1,4 @@
-package com.jljcxy.manage.base.institute;
+package com.ldr.manage.base.institute;
 
 import org.springframework.stereotype.Repository;
 import com.ldr.common.base.BaseDao;
@@ -10,5 +10,5 @@ import com.ldr.common.base.BaseDao;
 //@Slf4j
 @Repository
 public class InstituteDao extends BaseDao<Institute> {
-//	InstituteDao() { checkTableRef = true; /*启用删除时外键检查*/ } 
+//	InstituteDao() { checkTableRef = true; /*启用删除时外键检查*/ }
 }
