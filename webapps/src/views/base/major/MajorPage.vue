@@ -15,7 +15,7 @@
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
       <el-table-column prop="name" label="专业名称" v-if="column.name.show" ></el-table-column>
       <el-table-column prop="majorNumber" label="专业编号" v-if="column.majorNumber.show" ></el-table-column>
-      <el-table-column prop="instituteId" label="学院id" v-if="column.instituteId.show" ></el-table-column>
+      <el-table-column prop="instituteName" label="学院名称" v-if="column.instituteId.show" ></el-table-column>
       <el-table-column label="操作" width="150" v-if="column.operate.show">
         <template slot-scope="props">
           <div>
