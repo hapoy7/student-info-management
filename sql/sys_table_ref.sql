@@ -11,7 +11,7 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 09/03/2023 23:59:52
+ Date: 11/03/2023 00:38:09
 */
 
 SET NAMES utf8mb4;
@@ -37,12 +37,5 @@ CREATE TABLE `sys_table_ref`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `table_sub_field`(`main_table` ASC, `sub_table` ASC, `ref_id` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_zh_0900_as_cs COMMENT = '表引用关系' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of sys_table_ref
--- ----------------------------
-INSERT INTO `sys_table_ref` VALUES (1, 'sys_role', '角色表', 'sys_role_user', '角色用户关联表', 'role_id', NULL, '2022-10-01 00:00:00', -1, '2022-10-12 15:42:56', -1, 0);
-INSERT INTO `sys_table_ref` VALUES (2, 'sys_role', '角色表', 'sys_role_dept', '角色部门关联表', 'role_id', NULL, '2022-10-01 00:00:00', -1, '2022-10-12 15:43:04', -1, 0);
-INSERT INTO `sys_table_ref` VALUES (3, 'sys_role', '角色表', 'sys_role_func', '角色菜单关联表', 'role_id', NULL, '2022-10-01 00:00:00', -1, '2022-10-12 15:45:41', -1, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

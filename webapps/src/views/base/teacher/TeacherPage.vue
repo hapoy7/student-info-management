@@ -23,26 +23,6 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">用户id</label>{{props.row.userId}}
-          <hr class="hr">
-          <label class="label">老师姓名</label>{{props.row.name}}
-          <hr class="hr">
-          <label class="label">性别</label>{{props.row.sex}}
-          <hr class="hr">
-          <label class="label">年龄</label>{{props.row.age}}
-          <hr class="hr">
-          <label class="label">头衔</label>{{props.row.title}}
-          <hr class="hr">
-          <label class="label">邮箱</label>{{props.row.email}}
-          <hr class="hr">
-          <label class="label">头像地址</label>{{props.row.photoUrl}}
-          <hr class="hr">
-          <label class="label">手机</label>{{props.row.phone}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="userId" label="用户id" v-if="column.userId.show" ></el-table-column>
       <el-table-column prop="name" label="老师姓名" v-if="column.name.show" ></el-table-column>
       <el-table-column prop="sex" label="性别" v-if="column.sex.show" ></el-table-column>

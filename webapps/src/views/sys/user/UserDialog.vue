@@ -5,11 +5,6 @@
     <el-form :model="form" ref="form" :rules="rules" label-width="100px" :inline="true">
       <el-row>
         <el-col :span="12">
-          <el-form-item label="机构" prop="deptName">
-            <el-input placeholder="请选择机构" v-model="form.deptName" size="mini" @click.native="showDeptTree" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label="姓名" prop="name">
             <el-input placeholder="请输入姓名" v-model="form.name" size="mini" />
           </el-form-item>
@@ -47,16 +42,6 @@
         <el-col :span="12">
           <el-form-item label='分组' prop='groupName'>
             <el-input placeholder='请输入分组' v-model='form.groupName' size="mini" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label='指纹数量' prop='fingerprintCount'>
-            <el-input placeholder='请输入指纹数量' v-model='form.fingerprintCount' size="mini" />
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label='人脸信息' prop='faceInfo'>
-            <el-input placeholder='请输入人脸信息' v-model='form.faceInfo' size="mini" />
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -116,11 +101,10 @@ export default {
       dialogMode: "save",
       show: false,
       rules: {
-        // deptName: [{ required: true, message: "请选择机构", trigger: "blur" }],
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         loginName: [{ required: true, message: "请输入登录名", trigger: "blur" }],
-        // phone: [{ required: true, message: "请输入电话", trigger: "blur" }],
+        phone: [{ required: true, message: "请输入电话", trigger: "blur" }],
         number: [{ required: true, message: '请输入编号', trigger: 'blur' }],
         // cardNo: [{ required: true, message: '请输入卡号', trigger: 'blur' }],
         // groupName: [{ required: true, message: '请输入分组', trigger: 'blur' }],

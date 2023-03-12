@@ -21,22 +21,6 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">考试安排ID</label>{{props.row.examId}}
-          <hr class="hr">
-          <label class="label">学生id</label>{{props.row.studentId}}
-          <hr class="hr">
-          <label class="label">参加考试的时间</label>{{props.row.exemDate}}
-          <hr class="hr">
-          <label class="label">完成考试所用的时间,单位分钟</label>{{props.row.exemTimeCost}}
-          <hr class="hr">
-          <label class="label">参与考试的实际得分</label>{{props.row.exemScore}}
-          <hr class="hr">
-          <label class="label">考试结果的等级</label>{{props.row.exemResultLevel}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="examId" label="考试安排ID" v-if="column.examId.show" ></el-table-column>
       <el-table-column prop="studentId" label="学生id" v-if="column.studentId.show" ></el-table-column>
       <el-table-column prop="exemDate" label="参加考试的时间" v-if="column.exemDate.show" ></el-table-column>

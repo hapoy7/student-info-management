@@ -7,14 +7,6 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">学生id</label>{{props.row.studentId}}
-          <hr class="hr">
-          <label class="label">课程id</label>{{props.row.courseId}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="studentId" label="学生id" v-if="column.studentId.show" ></el-table-column>
       <el-table-column prop="courseId" label="课程id" v-if="column.courseId.show" ></el-table-column>
       <el-table-column label="操作" width="150" v-if="column.operate.show">

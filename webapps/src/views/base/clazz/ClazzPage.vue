@@ -5,19 +5,16 @@
       <el-form-item label="班级名称" v-show="condition.name.show"><el-input placeholder="请输入班级名称" size="mini" v-model="form.name"></el-input></el-form-item>
       <el-form-item label="专业id" v-show="condition.majorId.show"><el-input placeholder="请输入专业id" size="mini" v-model="form.majorId"></el-input></el-form-item>
       <el-form-item label="学院id" v-show="condition.instituteId.show"><el-input placeholder="请输入学院id" size="mini" v-model="form.instituteId"></el-input></el-form-item>
+      <el-form-item>
+        <el-button size="mini" @click="loadData">查询</el-button>
+        <el-button size="mini" @click="doReset">重置</el-button>
+        <el-button size="mini" @click="doAdd" type="primary">添加</el-button>
+        <el-button size="mini" @click="doDelete(selectIds)" v-if="selectIds.length > 0">删除</el-button>
+        <v-columns :condition="condition" :column="column" component="ClazzPage"></v-columns>
+      </el-form-item>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">班级名称</label>{{props.row.name}}
-          <hr class="hr">
-          <label class="label">专业id</label>{{props.row.majorId}}
-          <hr class="hr">
-          <label class="label">学院id</label>{{props.row.instituteId}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="name" label="班级名称" v-if="column.name.show" ></el-table-column>
       <el-table-column prop="majorId" label="专业id" v-if="column.majorId.show" ></el-table-column>
       <el-table-column prop="instituteId" label="学院id" v-if="column.instituteId.show" ></el-table-column>

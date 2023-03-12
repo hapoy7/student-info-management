@@ -4,7 +4,7 @@ spring:
       username: root
       password: root
 #自定义配置
-   rootpath: ${ROOT_PATH:Z:/} ##${}兼容docker
+   rootpath: ${ROOT_PATH:E:/jljcxy/} ##${}兼容docker
    rooturl: http://${ROOT_URL:192.168.1.159}/
    workerId: 0 #主键生成器服务ID(0~31)
    dataCenterId: 0 #主键生成器数据中心ID(0~3  1)

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row class="bg">
-      <el-col :span="20" class="logo" @click.native="() => $emit('changeWidth')">北京地铁新宫车辆段钥匙柜工控机系统 </el-col>
+      <el-col :span="20" class="logo" @click.native="() => $emit('changeWidth')">吉林警察学院学生信息管理系统 </el-col>
       <el-col :span="4" style="padding: 10px ; font-size: 14px; color: white;text-align: right;padding-right: 50px;">
         你好,{{ user.name }} <img src="@/assets/head.jpeg" style="width: 40px; height: 40px;" /> <el-button type="text"
           size="mini" @click="doLogOut()" style="color: white; margin-left: 8px">注消</el-button>

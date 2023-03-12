@@ -3,21 +3,16 @@
   <div>
     <el-form :inline="true">
       <el-form-item label="专业名称" v-show="condition.name.show"><el-input placeholder="请输入专业名称" size="mini" v-model="form.name"></el-input></el-form-item>
-      <el-form-item label="专业编号" v-show="condition.majorNumber.show"><el-input placeholder="请输入专业编号" size="mini" v-model="form.majorNumber"></el-input></el-form-item>
-      <el-form-item label="学院id" v-show="condition.instituteId.show"><el-input placeholder="请输入学院id" size="mini" v-model="form.instituteId"></el-input></el-form-item>
+      <el-form-item>
+        <el-button size="mini" @click="loadData">查询</el-button>
+        <el-button size="mini" @click="doReset">重置</el-button>
+        <el-button size="mini" @click="doAdd" type="primary">添加</el-button>
+        <el-button size="mini" @click="doDelete(selectIds)" v-if="selectIds.length > 0">删除</el-button>
+        <v-columns :condition="condition" :column="column" component="MajorPage"></v-columns>
+      </el-form-item>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">专业名称</label>{{props.row.name}}
-          <hr class="hr">
-          <label class="label">专业编号</label>{{props.row.majorNumber}}
-          <hr class="hr">
-          <label class="label">学院id</label>{{props.row.instituteId}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="name" label="专业名称" v-if="column.name.show" ></el-table-column>
       <el-table-column prop="majorNumber" label="专业编号" v-if="column.majorNumber.show" ></el-table-column>
       <el-table-column prop="instituteId" label="学院id" v-if="column.instituteId.show" ></el-table-column>

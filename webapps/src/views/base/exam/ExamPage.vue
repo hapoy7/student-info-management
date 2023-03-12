@@ -24,28 +24,6 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column type="expand" v-if="column.detail.show" width="35">
-        <template slot-scope="props">
-          <label class="label">考试介绍</label>{{props.row.examDesc}}
-          <hr class="hr">
-          <label class="label">课程id</label>{{props.row.courseId}}
-          <hr class="hr">
-          <label class="label">课程名称</label>{{props.row.examCourse}}
-          <hr class="hr">
-          <label class="label">考试日期</label>{{props.row.examDate}}
-          <hr class="hr">
-          <label class="label">考试时长</label>{{props.row.totalTime}}
-          <hr class="hr">
-          <label class="label">专业</label>{{props.row.major}}
-          <hr class="hr">
-          <label class="label">学院</label>{{props.row.institute}}
-          <hr class="hr">
-          <label class="label">总分</label>{{props.row.totalScore}}
-          <hr class="hr">
-          <label class="label">考试类型</label>{{props.row.examType}}
-          <hr class="hr">
-        </template>
-      </el-table-column>
       <el-table-column prop="examDesc" label="考试介绍" v-if="column.examDesc.show" ></el-table-column>
       <el-table-column prop="courseId" label="课程id" v-if="column.courseId.show" ></el-table-column>
       <el-table-column prop="examCourse" label="课程名称" v-if="column.examCourse.show" ></el-table-column>

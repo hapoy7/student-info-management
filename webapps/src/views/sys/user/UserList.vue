@@ -2,7 +2,6 @@
 <template>
   <div>
     <el-form :inline="true">
-      <el-form-item label="机构"> <el-input placeholder="请输入机构" size="mini" v-model="form.deptId"></el-input> </el-form-item>
       <el-form-item label="姓名"> <el-input placeholder="请输入姓名" size="mini" v-model="form.name"></el-input> </el-form-item>
       <el-form-item label="性别"> <v-select v-model="form.gender" placeholder="请选择性别" :dictKey="'gender'" :addBlank="true"/> </el-form-item>
       <el-form-item label="状态"> <v-select v-model="form.gender" placeholder="请选择状态" :dictKey="'status'" :addBlank="true"/> </el-form-item>
@@ -20,7 +19,6 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows) => selectChange(rows,'userId')">
       <el-table-column type="selection" width="40"></el-table-column>
-      <el-table-column prop="deptName" label="机构名称"  ></el-table-column>
       <el-table-column prop="name" label="姓名"  ></el-table-column>
       <el-table-column prop="loginName" label="登录名" ></el-table-column>
       <el-table-column prop="phone" label="电话" ></el-table-column>
@@ -28,8 +26,6 @@
       <el-table-column prop="number" label="编号" ></el-table-column>
       <el-table-column prop="cardNo" label="卡号" ></el-table-column>
       <el-table-column prop="groupName" label="分组" ></el-table-column>
-      <el-table-column prop="fingerprintCount" label="指纹数量" width="80"></el-table-column>
-      <el-table-column prop="faceInfo" label="人脸信息" width="80"></el-table-column>
       <el-table-column prop="type" label="人员类型" :formatter="pesonTypeFormat" width="80"></el-table-column>
       <el-table-column prop="startTime" label="开始时间" width="140"></el-table-column>
       <el-table-column prop="endTime" label="结束时间" width="140"></el-table-column>
