@@ -48,7 +48,6 @@ export default {
       condition: { 
         name: {show: true, text: "专业名称" },
         majorNumber: {show: true, text: "专业编号" },
-        instituteId: {show: true, text: "学院id" },
       },
     }; 
   },

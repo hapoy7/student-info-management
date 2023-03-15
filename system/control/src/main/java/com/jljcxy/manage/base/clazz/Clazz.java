@@ -1,5 +1,6 @@
 package com.jljcxy.manage.base.clazz;
 
+import com.jljcxy.common.base.annotation.Exclude;
 import lombok.Getter;
 import lombok.Setter;
 //import lombok.Builder;
@@ -35,4 +36,8 @@ public class Clazz {
 	@Schema(name = "institute_id", description = "学院id")
 	private Long instituteId; /* 学院id */
 	/* 扩展(显示)属性↓@Exclude */
+	@Exclude
+	private String majorName; /* 专业名称 */
+	@Exclude
+	private String instituteName; /* 学院名称 */
 }

@@ -10,7 +10,7 @@
           <el-form-item label='专业编号' prop='majorNumber'><el-input placeholder='请输入专业编号' v-model='form.majorNumber' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='学院id' prop='instituteId'><el-input placeholder='请输入学院id' v-model='form.instituteId' size="mini" /></el-form-item>
+          <el-form-item label='学院' prop='instituteId'><el-input placeholder='请输入学院名称' v-model='form.instituteId' size="mini" /></el-form-item>
         </el-col>
       </el-row>
     </el-form>

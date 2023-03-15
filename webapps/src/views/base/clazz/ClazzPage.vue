@@ -3,8 +3,7 @@
   <div>
     <el-form :inline="true">
       <el-form-item label="班级名称" v-show="condition.name.show"><el-input placeholder="请输入班级名称" size="mini" v-model="form.name"></el-input></el-form-item>
-      <el-form-item label="专业id" v-show="condition.majorId.show"><el-input placeholder="请输入专业id" size="mini" v-model="form.majorId"></el-input></el-form-item>
-      <el-form-item label="学院id" v-show="condition.instituteId.show"><el-input placeholder="请输入学院id" size="mini" v-model="form.instituteId"></el-input></el-form-item>
+      <el-form-item label="专业名称" v-show="condition.majorId.show"><el-input placeholder="请输入专业名称" size="mini" v-model="form.majorId"></el-input></el-form-item>
       <el-form-item>
         <el-button size="mini" @click="loadData">查询</el-button>
         <el-button size="mini" @click="doReset">重置</el-button>
@@ -16,8 +15,8 @@
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
       <el-table-column prop="name" label="班级名称" v-if="column.name.show" ></el-table-column>
-      <el-table-column prop="majorId" label="专业id" v-if="column.majorId.show" ></el-table-column>
-      <el-table-column prop="instituteId" label="学院id" v-if="column.instituteId.show" ></el-table-column>
+      <el-table-column prop="majorName" label="专业名称" v-if="column.majorId.show" ></el-table-column>
+      <el-table-column prop="instituteName" label="学院名称" v-if="column.instituteId.show" ></el-table-column>
       <el-table-column label="操作" width="150" v-if="column.operate.show">
         <template slot-scope="props">
           <div>
@@ -43,14 +42,13 @@ export default {
         choice: { show: true, text: "选择列" }, 
         detail: { show: true, text: "明细列" }, 
         name: {show: true, text: "班级名称" },
-        majorId: {show: true, text: "专业id" },
-        instituteId: {show: true, text: "学院id" },
+        majorId: {show: true, text: "专业名称" },
+        instituteId: {show: true, text: "学院名称" },
         operate: { show: true, text: "操作列" }, 
       },
       condition: { 
         name: {show: true, text: "班级名称" },
-        majorId: {show: true, text: "专业id" },
-        instituteId: {show: true, text: "学院id" },
+        majorId: {show: true, text: "专业名称" },
       },
     }; 
   },
@@ -62,7 +60,6 @@ export default {
       return {
         name: null,/*班级名称*/
         majorId: null,/*专业id*/
-        instituteId: null,/*学院id*/
       };
     },
     /**班级-分页列表*/
