@@ -1,18 +1,17 @@
 package com.jljcxy.manage.base.teacher;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import com.jljcxy.common.aop.AutoLog;
 import com.jljcxy.common.base.Page;
 import com.jljcxy.common.config.Result;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.jljcxy.manage.sys.user.User;
+import com.jljcxy.manage.sys.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @类说明 【老师】控制器
@@ -27,6 +26,8 @@ public class TeacherController {
 
 	@Autowired
 	private TeacherService teacherService; // 注入【老师】业务逻辑层
+	@Autowired
+	private UserService userService; // 注入【用户】业务逻辑层
 
 	/**
 	 * @方法说明 【老师】新增
@@ -35,8 +36,9 @@ public class TeacherController {
 	@Operation(summary = "【老师】新增", description = "【老师】新增")
 	@AutoLog("【老师】新增")
 	public Result<Long> save(@RequestBody @Validated Teacher teacher) {
-		//if (teacherService.count(TeacherCond.builder().nameEq(teacher.getName()).build()) > 0)
-			//return Result.error(1, "【老师名称】不能重复！");
+		Long userId = userService.save(User.builder().name(teacher.getName()).avatar(teacher.getPhotoUrl())
+				.loginName(teacher.getLoginName()).password(teacher.getPassword()).phone(teacher.getPhone()).gender(teacher.getSex().byteValue()).type((byte) 2).build());
+		teacher.setUserId(userId);
 		return Result.success(teacherService.save(teacher));
 	}
 
@@ -57,8 +59,8 @@ public class TeacherController {
 	@Operation(summary = "【老师】修改", description = "【老师】修改")
 	@AutoLog("【老师】修改")
 	public Result<Integer> update(@RequestBody @Validated Teacher teacher) {
-		//if (teacherService.count(TeacherCond.builder().nameEq(teacher.getName()).idNe(teacher.getId()).build()) > 0)
-			//return Result.error(1, "【老师名称】不能重复！");
+		userService.save(User.builder().name(teacher.getName()).avatar(teacher.getPhotoUrl())
+				.loginName(teacher.getLoginName()).password(teacher.getPassword()).phone(teacher.getPhone()).gender(teacher.getSex().byteValue()).type((byte) 2).build());
 		return Result.success(teacherService.update(teacher));
 	}
 

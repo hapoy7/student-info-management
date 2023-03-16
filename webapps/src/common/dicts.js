@@ -32,6 +32,8 @@ export const itemTypeFormat = (row, column) => getItemValue('itemType', row[colu
 export const isDoorFormat = (row, column) => getItemValue('isDoor', row[column.property]);//钥匙柜通讯板是否控制开门
 export const keyStatusFormat = (row, column) => getItemValue('keyStatus', row[column.property]);//钥匙状态
 export const keyReturnStatusFormat = (row, column) => getItemValue('keyReturnStatus', row[column.property]);//钥匙归还状态
+export const courseTypeFormat = (row, column) => getItemValue('courseType', row[column.property]);//课程类型
+export const examTypeFormat = (row, column) => getItemValue('examType', row[column.property]);//考试类型
 export const dateFormat = (row, column) => { //时间格式化
   var date = row[column.property];
   if (date == undefined) return "";

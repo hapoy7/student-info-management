@@ -7,13 +7,12 @@
           <el-form-item label='考试介绍' prop='examDesc'><el-input placeholder='请输入考试介绍' v-model='form.examDesc' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='课程id' prop='courseId'><el-input placeholder='请输入课程id' v-model='form.courseId' size="mini" /></el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label='课程名称' prop='examCourse'><el-input placeholder='请输入课程名称' v-model='form.examCourse' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='考试日期' prop='examDate'><el-input placeholder='请输入考试日期' v-model='form.examDate' size="mini" /></el-form-item>
+          <el-form-item label="考试日期" prop='examDate'>
+            <el-date-picker v-model="form.examDate" format="yyyy-MM-dd" value-format="yyyy-MM-ddTHH:mm:ss" type="datetime" placeholder="请选择考试日期" size="mini" />
+          </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='考试时长' prop='totalTime'><el-input placeholder='请输入考试时长' v-model='form.totalTime' size="mini" /></el-form-item>
@@ -28,7 +27,7 @@
           <el-form-item label='总分' prop='totalScore'><el-input placeholder='请输入总分' v-model='form.totalScore' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='考试类型' prop='examType'><el-input placeholder='请输入考试类型' v-model='form.examType' size="mini" /></el-form-item>
+          <el-form-item label="考试类型"  prop='examType'> <v-select v-model="form.examType" placeholder="请选择考试类型" :dictKey="'examType'" size="mini"/> </el-form-item>
         </el-col>
       </el-row>
     </el-form>

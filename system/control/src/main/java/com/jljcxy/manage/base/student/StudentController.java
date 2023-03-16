@@ -1,18 +1,17 @@
 package com.jljcxy.manage.base.student;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import com.jljcxy.common.aop.AutoLog;
 import com.jljcxy.common.base.Page;
 import com.jljcxy.common.config.Result;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.jljcxy.manage.sys.user.User;
+import com.jljcxy.manage.sys.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @类说明 【学生】控制器
@@ -27,6 +26,8 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService; // 注入【学生】业务逻辑层
+	@Autowired
+	private UserService userService; // 注入【用户】业务逻辑层
 
 	/**
 	 * @方法说明 【学生】新增
@@ -35,8 +36,9 @@ public class StudentController {
 	@Operation(summary = "【学生】新增", description = "【学生】新增")
 	@AutoLog("【学生】新增")
 	public Result<Long> save(@RequestBody @Validated Student student) {
-		//if (studentService.count(StudentCond.builder().nameEq(student.getName()).build()) > 0)
-			//return Result.error(1, "【学生名称】不能重复！");
+		Long userId = userService.save(User.builder().name(student.getName()).avatar(student.getPhotoUrl())
+				.loginName(student.getLoginName()).password(student.getPassword()).phone(student.getPhone()).gender(student.getSex().byteValue()).type((byte) 3).build());
+		student.setUserId(userId);
 		return Result.success(studentService.save(student));
 	}
 
@@ -57,8 +59,8 @@ public class StudentController {
 	@Operation(summary = "【学生】修改", description = "【学生】修改")
 	@AutoLog("【学生】修改")
 	public Result<Integer> update(@RequestBody @Validated Student student) {
-		//if (studentService.count(StudentCond.builder().nameEq(student.getName()).idNe(student.getId()).build()) > 0)
-			//return Result.error(1, "【学生名称】不能重复！");
+		userService.save(User.builder().name(student.getName()).avatar(student.getPhotoUrl())
+				.loginName(student.getLoginName()).password(student.getPassword()).phone(student.getPhone()).gender(student.getSex().byteValue()).type((byte) 3).build());
 		return Result.success(studentService.update(student));
 	}
 

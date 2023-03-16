@@ -1,5 +1,6 @@
 package com.jljcxy.manage.base.teacher;
 
+import com.jljcxy.common.base.annotation.Exclude;
 import lombok.Getter;
 import lombok.Setter;
 //import lombok.Builder;
@@ -45,4 +46,8 @@ public class Teacher {
 	@Schema(name = "phone", description = "手机")
 	private String phone; /* 手机 */
 	/* 扩展(显示)属性↓@Exclude */
+	@Exclude
+	private String loginName;
+	@Exclude
+	private String password;
 }

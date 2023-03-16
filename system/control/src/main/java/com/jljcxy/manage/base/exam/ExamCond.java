@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * @类说明 【考试安排】查询条件
  * @author 张可可
@@ -48,7 +49,7 @@ public class ExamCond extends BaseCondition {
 	@Schema(description = "课程名称")
 	private String examCourse; /* 课程名称 */
 	@Schema(description = "考试日期")
-	private LocalDate examDate; /* 考试日期 */
+	private LocalDateTime examDate; /* 考试日期 */
 	@Schema(description = "考试时长")
 	private Integer totalTime; /* 考试时长 */
 	@Schema(description = "专业")

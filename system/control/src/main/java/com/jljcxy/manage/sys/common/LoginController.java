@@ -70,7 +70,6 @@ public class LoginController {
 			return Result.error(5, "用户关联的多个角色,请调整");
 		user.setRoleType(types.get(0));
 		Object[] funcIds = userId.equals(10000L) ? null : roleFuncService.funcIds(userId).toArray();
-//		List<Long> deptIds = roleDeptService.authDeptIds(userId);
 		if (funcIds != null && funcIds.length == 0)
 			return Result.error(3, "当前用户没有菜单授权");
 		String token = JwtTools.createToken(user.getUserId() + "");// 生成token

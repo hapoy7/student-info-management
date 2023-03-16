@@ -4,13 +4,16 @@
     <el-form :model="form" ref="form" :rules="rules" label-width="100px" :inline="true">
       <el-row>
         <el-col :span="12">
-          <el-form-item label='用户id' prop='userId'><el-input placeholder='请输入用户id' v-model='form.userId' size="mini" /></el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label='老师姓名' prop='name'><el-input placeholder='请输入老师姓名' v-model='form.name' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='性别' prop='sex'><el-input placeholder='请输入性别' v-model='form.sex' size="mini" /></el-form-item>
+          <el-form-item label='登录名' prop='loginName'><el-input placeholder='请登录名' v-model='form.loginName' size="mini" /></el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label='密码' prop='password'><el-input placeholder='请输入密码' v-model='form.password' size="mini" /></el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="性别" prop='sex'> <v-select v-model="form.sex" placeholder="请选择性别" :dictKey="'gender'" size="mini"/> </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='年龄' prop='age'><el-input placeholder='请输入年龄' v-model='form.age' size="mini" /></el-form-item>

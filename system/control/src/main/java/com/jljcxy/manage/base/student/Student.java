@@ -1,5 +1,6 @@
 package com.jljcxy.manage.base.student;
 
+import com.jljcxy.common.base.annotation.Exclude;
 import lombok.Getter;
 import lombok.Setter;
 //import lombok.Builder;
@@ -47,4 +48,10 @@ public class Student {
 	@Schema(name = "photo_url", description = "头像地址")
 	private String photoUrl; /* 头像地址 */
 	/* 扩展(显示)属性↓@Exclude */
+	@Exclude
+	private String clazzName; /* 班级名称 */
+	@Exclude
+	private String loginName; /* 登录名 */
+	@Exclude
+	private String password; /* 登录密码 */
 }

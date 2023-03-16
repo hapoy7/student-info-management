@@ -2,9 +2,8 @@
 <template>
   <div>
     <el-form :inline="true">
-      <el-form-item label="用户id" v-show="condition.userId.show"><el-input placeholder="请输入用户id" size="mini" v-model="form.userId"></el-input></el-form-item>
       <el-form-item label="学号" v-show="condition.studentNumber.show"><el-input placeholder="请输入学号" size="mini" v-model="form.studentNumber"></el-input></el-form-item>
-      <el-form-item label="班级id" v-show="condition.clazzId.show"><el-input placeholder="请输入班级id" size="mini" v-model="form.clazzId"></el-input></el-form-item>
+      <el-form-item label="班级名称" v-show="condition.clazzId.show"><el-input placeholder="请输入班级名称" size="mini" v-model="form.clazzName"></el-input></el-form-item>
       <el-form-item label="学生姓名" v-show="condition.name.show"><el-input placeholder="请输入学生姓名" size="mini" v-model="form.name"></el-input></el-form-item>
       <el-form-item>
         <el-button size="mini" @click="loadData">查询</el-button>
@@ -15,20 +14,17 @@
         <v-columns :condition="condition" :column="column" component="StudentPage"></v-columns>
       </el-form-item>
       <div v-if="allShow">
-      <el-form-item label="性别" v-show="condition.sex.show"><el-input placeholder="请输入性别" size="mini" v-model="form.sex"></el-input></el-form-item>
+      <el-form-item label="性别" v-show="condition.sex.show"> <v-select v-model="form.sex" placeholder="请选择性别" :dictKey="'gender'" :addBlank="true"/> </el-form-item>
       <el-form-item label="年龄" v-show="condition.age.show"><el-input placeholder="请输入年龄" size="mini" v-model="form.age"></el-input></el-form-item>
       <el-form-item label="联系电话" v-show="condition.phone.show"><el-input placeholder="请输入联系电话" size="mini" v-model="form.phone"></el-input></el-form-item>
-      <el-form-item label="邮箱" v-show="condition.email.show"><el-input placeholder="请输入邮箱" size="mini" v-model="form.email"></el-input></el-form-item>
-      <el-form-item label="头像地址" v-show="condition.photoUrl.show"><el-input placeholder="请输入头像地址" size="mini" v-model="form.photoUrl"></el-input></el-form-item>
       </div>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column prop="userId" label="用户id" v-if="column.userId.show" ></el-table-column>
       <el-table-column prop="studentNumber" label="学号" v-if="column.studentNumber.show" ></el-table-column>
-      <el-table-column prop="clazzId" label="班级id" v-if="column.clazzId.show" ></el-table-column>
+      <el-table-column prop="clazzName" label="班级名称" v-if="column.clazzId.show" ></el-table-column>
       <el-table-column prop="name" label="学生姓名" v-if="column.name.show" ></el-table-column>
-      <el-table-column prop="sex" label="性别" v-if="column.sex.show" ></el-table-column>
+      <el-table-column prop="sex" label="性别" v-if="column.sex.show" :formatter="genderFormat"></el-table-column>
       <el-table-column prop="age" label="年龄" v-if="column.age.show" ></el-table-column>
       <el-table-column prop="phone" label="联系电话" v-if="column.phone.show" ></el-table-column>
       <el-table-column prop="email" label="邮箱" v-if="column.email.show" ></el-table-column>
@@ -49,6 +45,7 @@
 <script>
 import StudentDialog from './StudentDialog';
 import { pageMix } from "@/common/page";
+import { genderFormat } from "@/common/dicts";
 export default {
   mixins: [pageMix],
   components: { StudentDialog },
@@ -57,9 +54,8 @@ export default {
       column: { 
         choice: { show: true, text: "选择列" }, 
         detail: { show: true, text: "明细列" }, 
-        userId: {show: true, text: "用户id" },
         studentNumber: {show: true, text: "学号" },
-        clazzId: {show: true, text: "班级id" },
+        clazzId: {show: true, text: "班级名称" },
         name: {show: true, text: "学生姓名" },
         sex: {show: true, text: "性别" },
         age: {show: true, text: "年龄" },
@@ -69,21 +65,19 @@ export default {
         operate: { show: true, text: "操作列" }, 
       },
       condition: { 
-        userId: {show: true, text: "用户id" },
         studentNumber: {show: true, text: "学号" },
-        clazzId: {show: true, text: "班级id" },
+        clazzId: {show: true, text: "班级名称" },
         name: {show: true, text: "学生姓名" },
         sex: {show: true, text: "性别" },
         age: {show: true, text: "年龄" },
         phone: {show: true, text: "联系电话" },
-        email: {show: true, text: "邮箱" },
-        photoUrl: {show: true, text: "头像地址" },
       },
     }; 
   },
   //computed: {}, mounted(){},
   created() { this.loadData(); },
   methods: {
+    genderFormat,
     /**学生-查询参数*/
     initForm() {
       return {

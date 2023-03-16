@@ -4,9 +4,6 @@
     <el-form :model="form" ref="form" :rules="rules" label-width="100px" :inline="true">
       <el-row>
         <el-col :span="12">
-          <el-form-item label='用户id' prop='userId'><el-input placeholder='请输入用户id' v-model='form.userId' size="mini" /></el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label='学号' prop='studentNumber'><el-input placeholder='请输入学号' v-model='form.studentNumber' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
@@ -16,7 +13,13 @@
           <el-form-item label='学生姓名' prop='name'><el-input placeholder='请输入学生姓名' v-model='form.name' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='性别' prop='sex'><el-input placeholder='请输入性别' v-model='form.sex' size="mini" /></el-form-item>
+          <el-form-item label='登录名' prop='loginName'><el-input placeholder='请输入登录名' v-model='form.loginName' size="mini" /></el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label='登录密码' prop='password'><el-input placeholder='请输入登录密码' v-model='form.password' size="mini" /></el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="性别" prop='sex'> <v-select v-model="form.sex" placeholder="请选择性别" :dictKey="'gender'" /> </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='年龄' prop='age'><el-input placeholder='请输入年龄' v-model='form.age' size="mini" /></el-form-item>
@@ -28,7 +31,12 @@
           <el-form-item label='邮箱' prop='email'><el-input placeholder='请输入邮箱' v-model='form.email' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='头像地址' prop='photoUrl'><el-input placeholder='请输入头像地址' v-model='form.photoUrl' size="mini" /></el-form-item>
+          <el-form-item label="头像" prop="avatar">
+            <el-upload class="avatar-uploader" action="#" :http-request="uploadFile" :show-file-list="false">
+              <img v-if="form.avatarUrl" :src="form.avatarUrl" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -59,6 +67,13 @@ export default {
     }
   },
   methods: {
+     /*上传图片*/
+     uploadFile(obj) {
+      this.rq.post("sys/saveFile", obj.file).then((res) => {
+        if (res.code == 200) this.form = { ...this.form, avatarUrl: res.data.fileUrl, avatar: res.data.filePath };
+        else this.$message.error(res.msg);
+      });
+    },
     /*学生-保存*/
     save() {
       this.$refs['form'].validate((valid) => {

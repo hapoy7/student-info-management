@@ -2,9 +2,8 @@
 <template>
   <div>
     <el-form :inline="true">
-      <el-form-item label="用户id" v-show="condition.userId.show"><el-input placeholder="请输入用户id" size="mini" v-model="form.userId"></el-input></el-form-item>
       <el-form-item label="老师姓名" v-show="condition.name.show"><el-input placeholder="请输入老师姓名" size="mini" v-model="form.name"></el-input></el-form-item>
-      <el-form-item label="性别" v-show="condition.sex.show"><el-input placeholder="请输入性别" size="mini" v-model="form.sex"></el-input></el-form-item>
+      <el-form-item label="性别" v-show="condition.sex.show"> <v-select v-model="form.sex" placeholder="请选择性别" :dictKey="'gender'" :addBlank="true"/> </el-form-item>
       <el-form-item label="年龄" v-show="condition.age.show"><el-input placeholder="请输入年龄" size="mini" v-model="form.age"></el-input></el-form-item>
       <el-form-item>
         <el-button size="mini" @click="loadData">查询</el-button>
@@ -23,9 +22,8 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column prop="userId" label="用户id" v-if="column.userId.show" ></el-table-column>
       <el-table-column prop="name" label="老师姓名" v-if="column.name.show" ></el-table-column>
-      <el-table-column prop="sex" label="性别" v-if="column.sex.show" ></el-table-column>
+      <el-table-column prop="sex" label="性别" v-if="column.sex.show" :formatter="genderFormat"></el-table-column>
       <el-table-column prop="age" label="年龄" v-if="column.age.show" ></el-table-column>
       <el-table-column prop="title" label="头衔" v-if="column.title.show" ></el-table-column>
       <el-table-column prop="email" label="邮箱" v-if="column.email.show" ></el-table-column>
@@ -47,6 +45,7 @@
 <script>
 import TeacherDialog from './TeacherDialog';
 import { pageMix } from "@/common/page";
+import { genderFormat } from '@/common/dicts';
 export default {
   mixins: [pageMix],
   components: { TeacherDialog },
@@ -55,7 +54,6 @@ export default {
       column: { 
         choice: { show: true, text: "选择列" }, 
         detail: { show: true, text: "明细列" }, 
-        userId: {show: true, text: "用户id" },
         name: {show: true, text: "老师姓名" },
         sex: {show: true, text: "性别" },
         age: {show: true, text: "年龄" },
@@ -66,7 +64,6 @@ export default {
         operate: { show: true, text: "操作列" }, 
       },
       condition: { 
-        userId: {show: true, text: "用户id" },
         name: {show: true, text: "老师姓名" },
         sex: {show: true, text: "性别" },
         age: {show: true, text: "年龄" },
@@ -80,6 +77,7 @@ export default {
   //computed: {}, mounted(){},
   created() { this.loadData(); },
   methods: {
+    genderFormat,
     /**老师-查询参数*/
     initForm() {
       return {

@@ -30,10 +30,10 @@ public class CourseCond extends BaseCondition {
 		and("name LIKE", name, 3);
 		and("course_type =", courseType);
 		and("credit =", credit);
-		and("sign_stime =", signStime);
-		and("sign_etime =", signEtime);
-		and("exam_stime =", examStime);
-		and("exam_etime =", examEtime);
+		and("sign_stime >=", signStime);
+		and("sign_etime <=", signEtime);
+		and("exam_stime >=", examStime);
+		and("exam_etime <=", examEtime);
 		in("id", ids);
 	}
 	/* 默认条件↓ */

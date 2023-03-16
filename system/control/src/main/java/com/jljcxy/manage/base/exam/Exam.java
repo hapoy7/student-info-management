@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @类说明 【考试安排】实体
@@ -33,7 +33,7 @@ public class Exam {
 	@Schema(name = "exam_course", description = "课程名称")
 	private String examCourse; /* 课程名称 */
 	@Schema(name = "exam_date", description = "考试日期")
-	private LocalDate examDate; /* 考试日期 */
+	private LocalDateTime examDate; /* 考试日期 */
 	@Schema(name = "total_time", description = "考试时长")
 	private Integer totalTime; /* 考试时长 */
 	@Schema(name = "major", description = "专业")

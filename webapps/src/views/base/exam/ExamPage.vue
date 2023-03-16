@@ -2,37 +2,30 @@
 <template>
   <div>
     <el-form :inline="true">
-      <el-form-item label="考试介绍" v-show="condition.examDesc.show"><el-input placeholder="请输入考试介绍" size="mini" v-model="form.examDesc"></el-input></el-form-item>
-      <el-form-item label="课程id" v-show="condition.courseId.show"><el-input placeholder="请输入课程id" size="mini" v-model="form.courseId"></el-input></el-form-item>
       <el-form-item label="课程名称" v-show="condition.examCourse.show"><el-input placeholder="请输入课程名称" size="mini" v-model="form.examCourse"></el-input></el-form-item>
-      <el-form-item label="考试日期" v-show="condition.examDate.show"><el-input placeholder="请输入考试日期" size="mini" v-model="form.examDate"></el-input></el-form-item>
+      <el-form-item label="考试日期" v-show="condition.examDate.show">
+        <el-date-picker v-model="form.examDate" format="yyyy-MM-dd" value-format="yyyy-MM-ddTHH:mm:ss" type="datetime" placeholder="请选择考试日期" size="mini" />
+      </el-form-item>
+      <el-form-item label="考试类型" v-show="condition.examType.show"> <v-select v-model="form.examType" placeholder="请选择考试类型" :dictKey="'examType'" :addBlank="true"/> </el-form-item>
+      <el-form-item label="专业" v-show="condition.major.show"><el-input placeholder="请输入专业" size="mini" v-model="form.major"></el-input></el-form-item>
       <el-form-item>
         <el-button size="mini" @click="loadData">查询</el-button>
         <el-button size="mini" @click="doReset">重置</el-button>
         <el-button size="mini" @click="doAdd" type="primary">添加</el-button>
         <el-button size="mini" @click="doDelete(selectIds)" v-if="selectIds.length > 0">删除</el-button>
-        <el-button size="mini" @click="()=>allShow=!allShow" type="text">{{allShow?"▲":"▼"}}</el-button>
         <v-columns :condition="condition" :column="column" component="ExamPage"></v-columns>
       </el-form-item>
-      <div v-if="allShow">
-      <el-form-item label="考试时长" v-show="condition.totalTime.show"><el-input placeholder="请输入考试时长" size="mini" v-model="form.totalTime"></el-input></el-form-item>
-      <el-form-item label="专业" v-show="condition.major.show"><el-input placeholder="请输入专业" size="mini" v-model="form.major"></el-input></el-form-item>
-      <el-form-item label="学院" v-show="condition.institute.show"><el-input placeholder="请输入学院" size="mini" v-model="form.institute"></el-input></el-form-item>
-      <el-form-item label="总分" v-show="condition.totalScore.show"><el-input placeholder="请输入总分" size="mini" v-model="form.totalScore"></el-input></el-form-item>
-      <el-form-item label="考试类型" v-show="condition.examType.show"><el-input placeholder="请输入考试类型" size="mini" v-model="form.examType"></el-input></el-form-item>
-      </div>
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
       <el-table-column prop="examDesc" label="考试介绍" v-if="column.examDesc.show" ></el-table-column>
-      <el-table-column prop="courseId" label="课程id" v-if="column.courseId.show" ></el-table-column>
       <el-table-column prop="examCourse" label="课程名称" v-if="column.examCourse.show" ></el-table-column>
       <el-table-column prop="examDate" label="考试日期" v-if="column.examDate.show" ></el-table-column>
       <el-table-column prop="totalTime" label="考试时长" v-if="column.totalTime.show" ></el-table-column>
       <el-table-column prop="major" label="专业" v-if="column.major.show" ></el-table-column>
       <el-table-column prop="institute" label="学院" v-if="column.institute.show" ></el-table-column>
       <el-table-column prop="totalScore" label="总分" v-if="column.totalScore.show" ></el-table-column>
-      <el-table-column prop="examType" label="考试类型" v-if="column.examType.show" ></el-table-column>
+      <el-table-column prop="examType" label="考试类型" v-if="column.examType.show" :formatter="examTypeFormat"></el-table-column>
       <el-table-column label="操作" width="150" v-if="column.operate.show">
         <template slot-scope="props">
           <div>
@@ -49,6 +42,7 @@
 <script>
 import ExamDialog from './ExamDialog';
 import { pageMix } from "@/common/page";
+import { examTypeFormat } from '@/common/dicts';
 export default {
   mixins: [pageMix],
   components: { ExamDialog },
@@ -58,7 +52,6 @@ export default {
         choice: { show: true, text: "选择列" }, 
         detail: { show: true, text: "明细列" }, 
         examDesc: {show: true, text: "考试介绍" },
-        courseId: {show: true, text: "课程id" },
         examCourse: {show: true, text: "课程名称" },
         examDate: {show: true, text: "考试日期" },
         totalTime: {show: true, text: "考试时长" },
@@ -70,12 +63,10 @@ export default {
       },
       condition: { 
         examDesc: {show: true, text: "考试介绍" },
-        courseId: {show: true, text: "课程id" },
         examCourse: {show: true, text: "课程名称" },
         examDate: {show: true, text: "考试日期" },
         totalTime: {show: true, text: "考试时长" },
         major: {show: true, text: "专业" },
-        institute: {show: true, text: "学院" },
         totalScore: {show: true, text: "总分" },
         examType: {show: true, text: "考试类型" },
       },
@@ -84,6 +75,7 @@ export default {
   //computed: {}, mounted(){},
   created() { this.loadData(); },
   methods: {
+    examTypeFormat,
     /**考试安排-查询参数*/
     initForm() {
       return {

@@ -1,28 +1,36 @@
 /*课程新增与修改,  作者:张可可,  日期:2023-03-08 23:42:07*/
 <template>
-  <el-dialog :title="title" width="800px" :visible.sync="show" :close-on-click-modal="false" :close-on-press-escape="false">
+  <el-dialog :title="title" width="900px" :visible.sync="show" :close-on-click-modal="false" :close-on-press-escape="false">
     <el-form :model="form" ref="form" :rules="rules" label-width="100px" :inline="true">
       <el-row>
         <el-col :span="12">
           <el-form-item label='课程名称' prop='name'><el-input placeholder='请输入课程名称' v-model='form.name' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='课程类型' prop='courseType'><el-input placeholder='请输入课程类型' v-model='form.courseType' size="mini" /></el-form-item>
+          <el-form-item label="课程类型" prop='courseType'> <v-select v-model="form.courseType" placeholder="请选择课程类型" :dictKey="'courseType'" :addBlank="true" size="mini"/> </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='学分' prop='credit'><el-input placeholder='请输入学分' v-model='form.credit' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='签到开始时间' prop='signStime'><el-input placeholder='请输入签到开始时间' v-model='form.signStime' size="mini" /></el-form-item>
+          <el-form-item label="签到时间" prop='signStime'>
+            <el-date-picker v-model="form.signStime" format="yyyy-MM-dd" value-format="yyyy-MM-dd" type="date" placeholder="请选择签到开始时间" size="mini" />
+          </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='签到结束时间' prop='signEtime'><el-input placeholder='请输入签到结束时间' v-model='form.signEtime' size="mini" /></el-form-item>
+          <el-form-item label="签到时间" prop='signEtime'>
+            <el-date-picker v-model="form.signEtime" format="yyyy-MM-dd" value-format="yyyy-MM-dd" type="date" placeholder="请选择签到结束时间" size="mini" />
+          </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='考试开始时间' prop='examStime'><el-input placeholder='请输入考试开始时间' v-model='form.examStime' size="mini" /></el-form-item>
+          <el-form-item label="考试时间" prop='examStime'>
+            <el-date-picker v-model="form.examStime" format="yyyy-MM-dd" value-format="yyyy-MM-dd" type="date" placeholder="请选择考试开始时间" size="mini" />
+          </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='考试结束时间' prop='examEtime'><el-input placeholder='请输入考试结束时间' v-model='form.examEtime' size="mini" /></el-form-item>
+          <el-form-item label="考试时间" prop='examEtime'>
+            <el-date-picker v-model="form.examEtime" format="yyyy-MM-dd" value-format="yyyy-MM-dd" type="date" placeholder="请选择考试结束时间" size="mini" />
+          </el-form-item>
         </el-col>
       </el-row>
     </el-form>
