@@ -43,7 +43,6 @@
       <div style="text-align:center;padding:20px;">
         <button @click="takePhoto()" style="padding:10px;font-size:50px" >拍照</button>
         &emsp; &emsp;
-<!--        <button onclick="fileUp()" style="padding:10px;font-size:50px" >上传</button>-->
       </div>
     </el-tab-pane>
   </el-tabs>
@@ -135,7 +134,7 @@ export default {
     initWebSocket() {
       this.websock = new WebSocket(serverUrl + "login/point");
       this.websock.onopen = () => console.log("login/point连接成功");
-      this.websock.onerror = () => console.log("login/point 连接发生错误", e);
+      this.websock.onerror = () => console.log("login/point 连接发生错误");
       this.websock.onmessage = (msg) => {
         console.log(JSONbig.parse(msg.data));
         let data = JSONbig.parse(msg.data);

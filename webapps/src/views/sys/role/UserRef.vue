@@ -1,10 +1,10 @@
 /*用户不分页列表,作者:高振中,日期:2021-02-23 15:04:24*/
 <template>
-  <el-dialog title="关联用户" :visible.sync="show" width="1800px">
+  <el-dialog title="关联用户" :visible.sync="show" width="1300px">
     <el-form :inline="true">
-      <el-form-item label="机构名称">
+      <!-- <el-form-item label="机构名称">
         <el-input placeholder="请输入机构名称" size="mini" v-model="form.deptName"></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="用户名">
         <el-input placeholder="请输入用户名" size="mini" v-model="form.name"></el-input>
       </el-form-item>
@@ -18,7 +18,7 @@
       <el-row>
         <el-checkbox-group v-model="checkedIds" @change="handleCheckIds">
           <el-col :span="2" v-for="user in allUsers" :key="user.userId">
-            <el-checkbox :label="user.userId" :key="user.userId">{{ user.name + "--" + user.deptName}}</el-checkbox>
+            <el-checkbox :label="user.userId" :key="user.userId">{{ user.name }}</el-checkbox>
           </el-col>
         </el-checkbox-group>
       </el-row>

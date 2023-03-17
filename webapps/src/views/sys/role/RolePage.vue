@@ -32,7 +32,7 @@
             <el-button type="text" size="mini" @click="doDelete([props.row.roleId])">删除</el-button>
             <el-button type="text" size="mini" @click="linkUser(props.row.roleId)">关联用户</el-button>
             <el-button type="text" size="mini" @click="linkFunc(props.row.roleId)">功能权限</el-button>
-            <el-button type="text" size="mini" @click="linkDept(props.row.roleId)">数据权限</el-button>
+            <!-- <el-button type="text" size="mini" @click="linkDept(props.row.roleId)">数据权限</el-button> -->
           </div>
         </template>
       </el-table-column>

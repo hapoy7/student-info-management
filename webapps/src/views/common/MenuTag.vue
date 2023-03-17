@@ -1,7 +1,7 @@
 <template>
-  <el-row>
+  <el-row style="padding:15px 15px 0;">
     <el-tag v-for="tab in tabs" :key="tab.meta.funcId" @close="handleClose(tab)" @click="handClick(tab)"
-      :effect="tab.path == active.path ? 'dark' : 'light'" closable style="height: 32px;" >
+      :effect="tab.path == active.path ? 'dark' : 'light'" closable style="height: 32px;margin-right:10px;margin-bottom:10px;" >
       {{ tab.meta.name }}
     </el-tag>
   </el-row>
