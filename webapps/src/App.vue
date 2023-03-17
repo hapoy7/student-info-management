@@ -9,7 +9,7 @@
           <Menu :menus="menus" :active-menu="activeMenu"></Menu>
         </el-aside>
         <el-container :style="menuHeight">
-          <el-header style="height:32px;background:transparent;">
+          <el-header style="background:transparent;height:auto !important;">
             <menu-tag @activeMenu="handleActiveMenu" />
           </el-header>
           <el-main>
