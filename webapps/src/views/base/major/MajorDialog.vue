@@ -10,7 +10,12 @@
           <el-form-item label='专业编号' prop='majorNumber'><el-input placeholder='请输入专业编号' v-model='form.majorNumber' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='学院' prop='instituteId'><el-input placeholder='请输入学院名称' v-model='form.instituteId' size="mini" /></el-form-item>
+          <el-form-item label='学院' prop='instituteId'>
+            <el-select size="mini" :value="instituteValue"  @input="change2($event)" v-model='form.instituteId'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in instituteList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -31,7 +36,9 @@ export default {
         name :[{required: true, message: '请输入专业名称', trigger: 'blur'}],
         majorNumber :[{required: true, message: '请输入专业编号', trigger: 'blur'}],
         instituteId :[{required: true, message: '请输入学院id', trigger: 'blur'}],
-      }
+      },
+      instituteList: null,
+      instituteValue: null,
     }
   },
   methods: {
@@ -54,9 +61,21 @@ export default {
       }
     },
     /*专业-新增*/
-    addDialog() { this.title = "新增专业"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; },
+    addDialog() { this.title = "新增专业"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; this.queryMajorList();},
     /*专业-修改*/
     editDialog(row) { this.title = "修改专业"; this.dialogMode = "update"; this.form = {...row}; this.show = true; },
+     /* 查询学院相关信息 */
+     change2: function (val) {
+      this.majorValue = val;
+    },
+    queryMajorList () {
+      const param = { dr: 0, page: 1, size: 9999 };
+      this.rq.post("/institute/page", param).then(res => {
+        if (res.code == 200) { 
+          this.instituteList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+    },
   },
 }
 </script>

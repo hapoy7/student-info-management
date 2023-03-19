@@ -7,10 +7,20 @@
           <el-form-item label='班级名称' prop='name'><el-input placeholder='请输入班级名称' v-model='form.name' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='专业id' prop='majorId'><el-input placeholder='请输入专业id' v-model='form.majorId' size="mini" /></el-form-item>
+          <el-form-item label='专业' prop='majorId'>
+            <el-select size="mini" :value="majorValue"  @input="change($event)" v-model='form.majorId'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in majorList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='学院id' prop='instituteId'><el-input placeholder='请输入学院id' v-model='form.instituteId' size="mini" /></el-form-item>
+          <el-form-item label='学院' prop='instituteId'>
+            <el-select size="mini" :value="instituteValue"  @input="change2($event)" v-model='form.instituteId'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in instituteList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
       </el-row>
     </el-form>
@@ -19,7 +29,7 @@
 </template>
 <script>
 export default {
-  props: ["loadData"],
+  props: ["loadData", "value"],
   components: {},
   data() {
     return {
@@ -31,7 +41,11 @@ export default {
         name :[{required: true, message: '请输入班级名称', trigger: 'blur'}],
         majorId :[{required: true, message: '请输入专业id', trigger: 'blur'}],
         instituteId :[{required: true, message: '请输入学院id', trigger: 'blur'}],
-      }
+      },
+      majorList: null,
+      majorValue: null,
+      instituteList: null,
+      instituteValue: null,
     }
   },
   methods: {
@@ -54,9 +68,30 @@ export default {
       }
     },
     /*班级-新增*/
-    addDialog() { this.title = "新增班级"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; },
+    addDialog() { this.title = "新增班级"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; this.queryMajorList();},
     /*班级-修改*/
     editDialog(row) { this.title = "修改班级"; this.dialogMode = "update"; this.form = {...row}; this.show = true; },
+    /* 查询专业相关信息 */
+    change: function (val) {
+      this.majorValue = val;
+    },
+    queryMajorList () {
+      const param = { dr: 0, page: 1, size: 9999 };
+      this.rq.post("/major/page", param).then(res => {
+        if (res.code == 200) { 
+          this.majorList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+      this.rq.post("/institute/page", param).then(res => {
+        if (res.code == 200) { 
+          this.instituteList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+    },
+     /* 查询学院相关信息 */
+     change2: function (val) {
+      this.majorValue = val;
+    },
   },
 }
 </script>

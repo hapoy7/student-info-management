@@ -7,7 +7,12 @@
           <el-form-item label='考试介绍' prop='examDesc'><el-input placeholder='请输入考试介绍' v-model='form.examDesc' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='课程名称' prop='examCourse'><el-input placeholder='请输入课程名称' v-model='form.examCourse' size="mini" /></el-form-item>
+          <el-form-item label='课程名称' prop='examCourse'>
+            <el-select size="mini" :value="courseValue"  @input="change($event)" v-model='form.examCourse'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in courseList" :key="item.id" :label="item.name" :value="item.name"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="考试日期" prop='examDate'>
@@ -18,10 +23,20 @@
           <el-form-item label='考试时长' prop='totalTime'><el-input placeholder='请输入考试时长' v-model='form.totalTime' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='专业' prop='major'><el-input placeholder='请输入专业' v-model='form.major' size="mini" /></el-form-item>
+          <el-form-item label='专业' prop='major'>
+            <el-select size="mini" :value="majorValue"  @input="change3($event)" v-model='form.major'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in majorList" :key="item.id" :label="item.name" :value="item.name"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='学院' prop='institute'><el-input placeholder='请输入学院' v-model='form.institute' size="mini" /></el-form-item>
+          <el-form-item label='学院' prop='institute'>
+            <el-select size="mini" :value="instituteValue"  @input="change2($event)" v-model='form.institute'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in instituteList" :key="item.id" :label="item.name" :value="item.name"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='总分' prop='totalScore'><el-input placeholder='请输入总分' v-model='form.totalScore' size="mini" /></el-form-item>
@@ -54,7 +69,13 @@ export default {
         institute :[{required: true, message: '请输入学院', trigger: 'blur'}],
         totalScore :[{required: true, message: '请输入总分', trigger: 'blur'}],
         examType :[{required: true, message: '请输入考试类型', trigger: 'blur'}],
-      }
+      },
+      courseList: null,
+      courseValue: null,
+      instituteList: null,
+      instituteValue: null,
+      majorValue: null,
+      majorList: null,
     }
   },
   methods: {
@@ -83,9 +104,39 @@ export default {
       }
     },
     /*考试安排-新增*/
-    addDialog() { this.title = "新增考试安排"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; },
+    addDialog() { this.title = "新增考试安排"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; this.queryInstituteList();},
     /*考试安排-修改*/
     editDialog(row) { this.title = "修改考试安排"; this.dialogMode = "update"; this.form = {...row}; this.show = true; },
+    /* 查询学院相关信息 */
+    change: function (val) {
+      this.courseValue = val;
+    },
+    queryInstituteList () {
+      const param = { dr: 0, page: 1, size: 9999 };
+      this.rq.post("/course/page", param).then(res => {
+        if (res.code == 200) { 
+          this.courseList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+      this.rq.post("/institute/page", param).then(res => {
+        if (res.code == 200) { 
+          this.instituteList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+      this.rq.post("/major/page", param).then(res => {
+        if (res.code == 200) { 
+          this.majorList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+    },
+     /* 查询学院相关信息 */
+     change2: function (val) {
+      this.instituteValue = val;
+    },
+    /* 查询专业相关信息 */
+     change3: function (val) {
+      this.majorValue = val;
+    },
   },
 }
 </script>

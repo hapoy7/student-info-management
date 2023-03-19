@@ -7,7 +7,12 @@
           <el-form-item label='学号' prop='studentNumber'><el-input placeholder='请输入学号' v-model='form.studentNumber' size="mini" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label='班级id' prop='clazzId'><el-input placeholder='请输入班级id' v-model='form.clazzId' size="mini" /></el-form-item>
+          <el-form-item label='班级' prop='clazzId'>
+            <el-select size="mini" :value="clazzValue"  @input="change($event)" v-model='form.clazzId'>
+              <el-option label="--请选择--" value=""></el-option>
+              <el-option v-for="item in clazzList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+            </el-select>
+          </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label='学生姓名' prop='name'><el-input placeholder='请输入学生姓名' v-model='form.name' size="mini" /></el-form-item>
@@ -63,7 +68,9 @@ export default {
         phone :[{required: true, message: '请输入联系电话', trigger: 'blur'}],
         email :[{required: true, message: '请输入邮箱', trigger: 'blur'}],
         photoUrl :[{required: true, message: '请输入头像地址', trigger: 'blur'}],
-      }
+      },
+      clazzList: null,
+      clazzValue: null,
     }
   },
   methods: {
@@ -99,9 +106,21 @@ export default {
       }
     },
     /*学生-新增*/
-    addDialog() { this.title = "新增学生"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; },
+    addDialog() { this.title = "新增学生"; this.dialogMode = "save"; this.form = this.initForm(); this.show = true; this.queryMajorList();},
     /*学生-修改*/
     editDialog(row) { this.title = "修改学生"; this.dialogMode = "update"; this.form = {...row}; this.show = true; },
+    /* 查询班级相关信息 */
+    change: function (val) {
+      this.clazzValue = val;
+    },
+    queryMajorList () {
+      const param = { dr: 0, page: 1, size: 9999 };
+      this.rq.post("/clazz/page", param).then(res => {
+        if (res.code == 200) { 
+          this.clazzList = res.data.dataList;
+        } else this.$message.error(res.msg);
+      });
+    },
   },
 }
 </script>
