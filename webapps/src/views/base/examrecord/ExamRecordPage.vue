@@ -3,9 +3,6 @@
   <div>
     <el-form :inline="true">
       <el-form-item label="学生名称" v-show="condition.studentId.show"><el-input placeholder="请输入学生名称" size="mini" v-model="form.studentId"></el-input></el-form-item>
-      <el-form-item label="参加考试的时间" v-show="condition.exemDate.show"><el-input placeholder="请输入参加考试的时间" size="mini" v-model="form.exemDate"></el-input></el-form-item>
-      <el-form-item label="完成考试所用的时间,单位分钟" v-show="condition.exemTimeCost.show"><el-input placeholder="请输入完成考试所用的时间,单位分钟" size="mini" v-model="form.exemTimeCost"></el-input></el-form-item>
-      <el-form-item label="参与考试的实际得分" v-show="condition.exemScore.show"><el-input placeholder="请输入参与考试的实际得分" size="mini" v-model="form.exemScore"></el-input></el-form-item>
       <el-form-item label="考试结果的等级" v-show="condition.exemResultLevel.show"><el-input placeholder="请输入考试结果的等级" size="mini" v-model="form.exemResultLevel"></el-input></el-form-item>
       <el-form-item>
         <el-button size="mini" @click="loadData">查询</el-button>
@@ -15,7 +12,7 @@
     </el-form>
     <v-table :data="dataList" @selection-change="(rows)=>selectChange(rows,'id')">
       <el-table-column type="selection" width="40" v-if="column.choice.show" ></el-table-column>
-      <el-table-column prop="studentId" label="学生id" v-if="column.studentId.show" ></el-table-column>
+      <el-table-column prop="studentName" label="学生姓名" v-if="column.studentId.show" ></el-table-column>
       <el-table-column prop="exemDate" label="参加考试的时间" v-if="column.exemDate.show" ></el-table-column>
       <el-table-column prop="exemTimeCost" label="完成考试所用的时间,单位分钟" v-if="column.exemTimeCost.show" ></el-table-column>
       <el-table-column prop="exemScore" label="参与考试的实际得分" v-if="column.exemScore.show" ></el-table-column>

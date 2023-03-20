@@ -17,7 +17,7 @@ module.exports = {
       }
     }
   },
-  chainWebpack: config => { config.plugin('html').tap(args => { args[0].title = '工控机系统'; return args; }) },
+  chainWebpack: config => { config.plugin('html').tap(args => { args[0].title = '学生信息管理系统'; return args; }) },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {// 为生产环境修改配置...
       config.mode = 'production';

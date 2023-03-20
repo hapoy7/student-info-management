@@ -1,5 +1,6 @@
 package com.jljcxy.manage.base.examrecord;
 
+import com.jljcxy.common.base.annotation.Exclude;
 import com.jljcxy.common.base.annotation.Id;
 import com.jljcxy.common.base.annotation.Table;
 import com.jljcxy.common.base.key.IdType;
@@ -39,4 +40,6 @@ public class ExamRecord {
 	@Schema(name = "exem_result_level", description = "考试结果的等级")
 	private Integer exemResultLevel; /* 考试结果的等级 */
 	/* 扩展(显示)属性↓@Exclude */
+	@Exclude
+	private String studentName; /* 学生姓名 */
 }
